@@ -8,16 +8,16 @@ from pyjarowinkler import distance
 
 def Trainmodel():
     # 讀取文庫句子
-    with open('句子資料庫.txt', 'r', encoding= 'UTF-8')as f :
+    with open('句子資料庫.txt', 'r', encoding='UTF-8')as f :
         SentenceDatabase = f.read().split()
     # 將句子逐一斷詞並儲存
-    for sentence in SentenceDatabase:
-        jword = jieba.cut( sentence, cut_all=False)         
-        with open('分詞後的句子.txt', 'a', encoding = 'UTF-8')as d:
-            d.write(" ".join(jword)+ ' ')
+    with open('分詞後的句子.txt', 'w', encoding='UTF-8') as d:
+        for sentence in SentenceDatabase:
+            jword = jieba.cut(sentence, cut_all=False)
+            d.write(" ".join(jword) + ' ')
     # 把詞轉換成詞向量並儲存
     sentences = word2vec.LineSentence("分詞後的句子.txt")
-    model = word2vec.Word2Vec(sentences, size=250, min_count= 1)
+    model = word2vec.Word2Vec(sentences, vector_size=250, min_count=1)
     model.save('word2vec.model')
 
 def Usemodel():
