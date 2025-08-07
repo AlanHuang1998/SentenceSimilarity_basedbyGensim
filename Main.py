@@ -40,12 +40,12 @@ def Usemodel():
     metrixlist = np.array(veclist2)
     Metrix2 = np.mean(metrixlist, axis = 0) # 計算句子的向量
 
-    # 以下是各種比較方式，比較準確的有Cosine similarlity，jarodistance，相關距離
+    # 以下是各種比較方式，比較準確的有Cosine similarity，jarodistance，相關距離
     # 歐式距離
     Ohdist = np.linalg.norm(Metrix1-Metrix2)
     print("歐式距離: ", Ohdist*100)
 
-    # Cosine similarlity
+    # Cosine similarity
     Cosinedist = scipy.spatial.distance.cosine(Metrix1, Metrix2)
     print("Cosine_Similarity: ", 1-Cosinedist)
 
